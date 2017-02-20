@@ -32,3 +32,27 @@ public class Solution {
         return theValCount+nextValCount;
     }
 }
+
+
+//偷看別人的想法之後重寫.  多用一個遞迴,如此可不用使用bool變數
+//複雜度應該是差不多的.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int pathSum(TreeNode root, int sum) {
+        return root==null?0:runTree(root,sum)+pathSum(root.left,sum)+pathSum(root.right,sum);
+    }
+    
+    public int runTree(TreeNode root,int target){
+        if (root==null) 
+            return 0;
+        return (root.val==target?1:0)+runTree(root.left,target-root.val)+runTree(root.right,target-root.val);
+    }
+}
